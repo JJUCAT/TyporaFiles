@@ -21,6 +21,62 @@ xxx
 
 
 
+#### explicit 修饰构造函数
+
+关键字只能用于类内部的构造函数声明上。被修饰的构造函数的类，不能发生相应的隐式类型转换，只能以显示的方式进行类型转换。所以只用于修饰单参构造函数。因为无参构造函数和多参构造函数本身就是显示调用的。
+
+```c++
+#include<cstring>
+#include<string>
+#include<iostream>
+
+class Explicit
+{
+    private:
+
+    public:
+        Explicit(int size)
+        {
+            std::cout << " the size is " << size << std::endl;
+        }
+        Explicit(const char* str)
+        {
+            std::string _str = str;
+            std::cout << " the str is " << _str << std::endl;
+        }
+
+        Explicit(const Explicit& ins)
+        {
+            std::cout << " The Explicit is ins" << std::endl;
+        }
+
+        Explicit(int a,int b)
+        {
+            std::cout << " the a is " << a  << " the b is " << b << std::endl;
+        }
+};
+
+int main()
+{
+    Explicit test0(15);
+    Explicit test1 = 10;// 隐式调用Explicit(int size)
+
+    Explicit test2("RIGHTRIGHT");
+    Explicit test3 = "BUGBUGBUG";// 隐式调用Explicit(const char* str)
+
+    Explicit test4(1, 10);
+    Explicit test5 = test1;
+}
+```
+
+上面示例中 `Explicit(int size)` 和 `Explicit(const char* str)` 前添加 `explicit` 修饰的话，下面的隐式调用便会报错；
+
+
+
+
+
+
+
 "#"字符串预处理：直接把参数转为字符串，并且可以同前后字符串相连；
 
 "##" 符号连接：把前后符号拼接起来，只是符号；（比如把前后符号同参数拼接为函数）

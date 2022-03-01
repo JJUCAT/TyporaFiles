@@ -1,3 +1,5 @@
+## git ssh 登录
+
 ```c++
 sudo apt-get install git//安装git
 
@@ -179,6 +181,28 @@ git log
 ```c
 git reset --hard [HEAD]  //head 就是 git log 看到的 commit
 ```
+
+
+
+
+
+
+
+
+
+## git 问题
+
+git push
+
+```sh
+fatal: unable to access 'https://github.com/JJUCAT/lmrframe.git/': OpenSSL SSL_read: Connection was reset, errno 10054
+```
+
+解决：`$ git config --global http.sslVerify "false"`
+
+
+
+
 
 
 
