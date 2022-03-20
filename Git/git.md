@@ -198,11 +198,29 @@ git push
 fatal: unable to access 'https://github.com/JJUCAT/lmrframe.git/': OpenSSL SSL_read: Connection was reset, errno 10054
 ```
 
-解决：`$ git config --global http.sslVerify "false"`
+原因：因为 git 在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有 SSL 协议了，所以取消 git 的 https 代理即可，不行再取消http的代理。原因还有一个，当前代理网速过慢，所以偶尔会成功，偶尔失败。
+
+解决：
+
+- `$ git config --global http.sslVerify "false"`
+- `$ git config --global --unset http.proxy` //取消 http 代理
+- `$ git config --global --unset https.proxy` //取消 https 代理
+- 科学上网解决网速问题
 
 
 
+git push
 
+```sh
+kex_exchange_identification: read: Connection reset by peer
+```
 
+原因：
 
+1. ssh 服务器进程出现故障（崩溃），或者它可能检测到一些严重问题导致它立即退出。
+2. 某些防火墙正在干扰与 ssh 服务器的连接。
+
+解决：
+
+改变 vpn 路线
 
