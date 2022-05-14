@@ -1944,7 +1944,19 @@ eat(b);
 eat(d);//错误
 ```
 
-private 继承时候，编辑器不会把 D 对象转换为 B 对象；而且 D 会把 B 的所有成员继承到自己的 private 下；
+private 继承时候，编辑器不会把 D 对象转换为 B 对象；而且 D 会把 B 的public 和 protect 成员继承到自己的 private 下；
+
+
+
+三种继承的特性：
+
+|          | public    | protected | private |
+| -------- | --------- | --------- | ------- |
+| 公有继承 | public    | protected | 不可见  |
+| 私有继承 | private   | private   | 不可见  |
+| 保护继承 | protected | protected | 不可见  |
+
+
 
 
 
