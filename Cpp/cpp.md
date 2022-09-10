@@ -298,7 +298,7 @@ int main()
 
 生成封闭类时候，先执行成员对象的构造函数，再执行封闭类的构造函数。
 
-销毁封闭类时候，先执行封闭了的析构函数，再执行成员对象的析构函数。
+销毁封闭类时候，先执行封闭类的析构函数，再执行成员对象的析构函数。
 
 
 
@@ -572,7 +572,25 @@ dynamic_cast 可以将基类类型的指针或引用安全地转换为派生类�
 动态绑定：运行时数据的类型绑定；
 
 ```c++
-class B{    void DoSomething();    virtual void vfun();}class C : public B{    void DoSomething();    virtual void vfun();}class D : public B{    void DoSomething();    virtual void vfun();}D* pD = new D();B* pB = pD;pD -> DoSomething();//D::DoSomething()pB -> DoSomething();//B::DoSomething()pD -> vfun();//D::vfun()pB -> vfun();//D::vfun()
+class B{    
+    void DoSomething();    
+    virtual void vfun();
+}
+class C : public B{    
+    void DoSomething();    
+    virtual void vfun();
+}
+class D : public B
+{    
+    void DoSomething();    
+ 	virtual void vfun();
+}
+D* pD = new D();
+B* pB = pD;pD -> DoSomething();
+//D::DoSomething()pB -> DoSomething();
+//B::DoSomething()pD -> vfun();
+//D::vfun()pB -> vfun();
+//D::vfun()
 ```
 
 
